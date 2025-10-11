@@ -17,8 +17,8 @@ const ContactPage = () => {
                         <p className='font-semibold text-xl text-gray-600'>Notre Boutique</p>
                         <p className='text-gray-500'>Carrefour 3 Palmiers <br /></p>
                         <p className='text-gray-500'>Tel: (225) 00 00 00 00 00 <br /> Email: example@gmail.com</p>
-                        <p></p>
-                        <p></p>
+                        {/* <p></p>
+                        <p></p> */}
                     </div>
                 </article>
                 <NewsletterBox />
