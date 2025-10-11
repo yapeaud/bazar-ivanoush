@@ -22,13 +22,13 @@ const Navbar = () => {
                         <hr className='w-2/4 border-none h-[1.5px] bg-gray-700 hidden' />
                     </NavLink>
 
-                    <NavLink to='/collection' className='flex flex-col items-center gap-1'>
-                        <p className='uppercase'>Collection</p>
+                    <NavLink to='/à-propos' className='flex flex-col items-center gap-1'>
+                        <p className='uppercase'>À propos</p>
                         <hr className='w-2/4 border-none h-[1.5px] bg-gray-700 hidden' />
                     </NavLink>
 
-                    <NavLink to='/à-propos' className='flex flex-col items-center gap-1'>
-                        <p className='uppercase'>À propos</p>
+                    <NavLink to='/collection' className='flex flex-col items-center gap-1'>
+                        <p className='uppercase'>Collection</p>
                         <hr className='w-2/4 border-none h-[1.5px] bg-gray-700 hidden' />
                     </NavLink>
 
