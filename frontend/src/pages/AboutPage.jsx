@@ -14,13 +14,10 @@ const AboutPage = () => {
                 <article className='my-10 flex flex-col md:flex-row gap-16'>
                     <img src={assets.about_img} alt="" className='w-full md:max-w-[450px]' />
                     <div className='flex flex-col gap-6 justify-center md:w-2/4 text-gray-600'>
-                        <p>Forever was born out of a passion for innovation and a desire to revolutionize the way people shop online. Our journey began with a simple idea: to provide a platform where customers can easily discover, explore, and purchase a wide range of products from the comfort of their homes.</p>
-                        <p>
-Since our inception, we've worked tirelessly to curate a diverse selection of high-quality products that cater to every taste and preference. From fashion and beauty to electronics and home essentials, we offer an extensive collection sourced from trusted brands and suppliers.</p>
+                        <p>Nous sommes plus qu'une simple friperie, nous sommes la caverne d'autres articles diverse.</p>
+                         <p>Au cœur du Bazar d'Ivanoush, se trouve la qualité. Nous sélectionnons avec le plus grand soin nos articles, en ne proposant que du "friperie 1er choix". Cela signifie des vêtements (notamment nos chemises) et accessoires en excellent état, sans défauts majeurs, prêts à commencer une nouvelle vie dans votre dressing.</p>
                         <b className='text-gray-800'>Notre Mission</b>
-                        <p>
-
-Our mission at Forever is to empower customers with choice, convenience, and confidence. We're dedicated to providing a seamless shopping experience that exceeds expectations, from browsing and ordering to delivery and beyond.</p>
+                        <p>Vous offrir des trésors à prix doux, tout en promouvant une consommation plus responsable.</p>
                     </div>
                 </article>
 
@@ -30,16 +27,16 @@ Our mission at Forever is to empower customers with choice, convenience, and con
 
                 <article className='flex flex-col md:flex-row text-sm mb-20'>
                     <div className='border px-10 md:px-16 py-8 sm:py-20 flex flex-col gap-5'>
-                        <b>Qualité et Qualité:</b>
-                        <p className='text-gray-600'>We meticulously select and vet each product to ensure it meets our stringent quality standards.</p>
+                        <b>Qualité & Accessibilité :</b>
+                        <p className='text-gray-600'>Rendre la mode et les objets de qualité accessibles à tous grâce à la seconde main "1er choix".</p>
                     </div>
                     <div className='border px-10 md:px-16 py-8 sm:py-20 flex flex-col gap-5'>
-                        <b>Commodité et Accessibilité:</b>
-                        <p className='text-gray-600'>With our user-friendly interface and hassle-free ordering process, shopping has never been easier.</p>
+                        <b>Mode Responsable : </b>
+                        <p className='text-gray-600'>Participer activement à l'économie circulaire en donnant une seconde vie aux produits, en plus a moindre coût </p>
                     </div>
                     <div className='border px-10 md:px-16 py-8 sm:py-20 flex flex-col gap-5'>
-                        <b>Exceptional Customer Service:</b>
-                        <p className='text-gray-600'>Our team of dedicated professionals is here to assist you the way, ensuring your satisfaction is our top priority.</p>
+                        <b>Découverte & Plaisir :</b>
+                        <p className='text-gray-600'>Être un lieu de découverte constant, où l'on chine avec plaisir la pièce rare qui apportera une touche d'originalité à votre quotidien.</p>
                     </div>
                 </article>
 

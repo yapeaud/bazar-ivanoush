@@ -72,7 +72,7 @@ const ProductPage = () => {
                         <div className='text-sm text-gray-500 mt-5 flex flex-col gap-1'>
                             <p>Produit 100% original.</p>
                             <p>Le paiement à la livraison est disponible pour ce produit.</p>
-                            <p>Politique de retour et d'échange facile dans les 7 jours.</p>
+                            <p>Vous disposez de 3 jours pour retourner votre achat.</p>
                         </div>
                     </aside>
                 </article>

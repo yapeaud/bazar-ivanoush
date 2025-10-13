@@ -18,7 +18,7 @@ const LatestCollection = () => {
                 <article className='text-center py-8 text-3xl'>
                     <Title text1={'DERNIÈRES'} text2={'COLLECTIONS'} />
                     <p className='w-3/4 m-auto text-xs  sm:text-sm md:text-base text-gray-600'>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta doloribus voluptate explicabo vel eius facilis iste laudantium rem.
+                        Fatigué de choisir entre la qualité et le prix ? Laissez-nous vous présenter une collection de chemises qui va tout changer.
                     </p>
                 </article>
 

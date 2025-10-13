@@ -9,32 +9,67 @@ const PlaceOrderPage = () => {
 
     const [method, setMethod] = useState('cod');
 
-    const {navigate} = useContext(ShopContext);
+    const { navigate } = useContext(ShopContext);
 
     return (
         <>
             <section className='flex flex-col sm:flex-row justify-between gap-4 pt-5 sm:pt-14 min-h-[80vh] border-t'>
 
                 {/* ---------- Côté Gauche ---------- */}
-                <aside className='flex flex-col gap-4 w-full sm:max-w-[480px]'>
-                    <article className='text-xl sm:text-2xl my-3 '>
+                <aside className="flex flex-col gap-4 w-full sm:max-w-[480px]">
+                    <article className="text-xl sm:text-2xl mb-2">
                         <Title text1={'INFORMATIONS SUR'} text2={'LA LIVRAISON'} />
                     </article>
-                    <article className='flex gap-3'>
-                        <input type="text" placeholder='Prénoms' className='border border-gray-300 rounded py-1.5 px-3.5 w-full' />
-                        <input type="text" placeholder='Nom' className='border border-gray-300 rounded py-1.5 px-3.5 w-full' />
+
+                    {/* Nom et prénoms */}
+                    <article>
+                        <label className="block mb-1 text-gray-700 text-sm font-medium">Nom et prénoms</label>
+                        <input
+                            type="text"
+                            placeholder="Entrez votre nom complet"
+                            className="border border-gray-300 rounded-lg py-2 px-3 w-full focus:border-black focus:outline-none"
+                        />
                     </article>
-                    <input type="email" placeholder='Adresse e-mail' className='border border-gray-300 rounded py-1.5 px-3.5 w-full' />
-                    <input type="text" placeholder='Rue' className='border border-gray-300 rounded py-1.5 px-3.5 w-full' />
-                    <article className='flex gap-3'>
-                        <input type="text" placeholder='Ville' className='border border-gray-300 rounded py-1.5 px-3.5 w-full' />
-                        <input type="text" placeholder='État' className='border border-gray-300 rounded py-1.5 px-3.5 w-full' />
+
+                    {/* Contact */}
+                    <article>
+                        <label className="block mb-1 text-gray-700 text-sm font-medium">Contact à joindre</label>
+                        <input
+                            type="tel"
+                            placeholder="Ex: 0700000000"
+                            className="border border-gray-300 rounded-lg py-2 px-3 w-full focus:border-black focus:outline-none"
+                        />
                     </article>
-                    <article className='flex gap-3'>
-                        <input type="number" placeholder='Code postal' className='border border-gray-300 rounded py-1.5 px-3.5 w-full' />
-                        <input type="text" placeholder='Pays' className='border border-gray-300 rounded py-1.5 px-3.5 w-full' />
+
+                    {/* Lieu de livraison */}
+                    <article>
+                        <label className="block mb-1 text-gray-700 text-sm font-medium">Lieu de livraison</label>
+                        <input
+                            type="text"
+                            placeholder="Ex: Cocody, Riviera 2"
+                            className="border border-gray-300 rounded-lg py-2 px-3 w-full focus:border-black focus:outline-none"
+                        />
                     </article>
-                    <input type="number" placeholder='Téléphone' className='border border-gray-300 rounded py-1.5 px-3.5 w-full' />
+
+                    {/* Rue sur Yango */}
+                    <article>
+                        <label className="block mb-1 text-gray-700 text-sm font-medium">Rue sur Yango</label>
+                        <input
+                            type="text"
+                            placeholder="Nom de la rue (comme sur Yango)"
+                            className="border border-gray-300 rounded-lg py-2 px-3 w-full focus:border-black focus:outline-none"
+                        />
+                    </article>
+
+                    {/* Ville d’expédition */}
+                    <article>
+                        <label className="block mb-1 text-gray-700 text-sm font-medium">Ville d’expédition</label>
+                        <input type="text" placeholder="Entrez votre ville" className="border border-gray-300 rounded-lg py-2 px-3 w-full focus:border-black focus:outline-none" />
+
+                        <p className="text-sm text-gray-600 mt-1">
+                            Frais d’expédition : <span className="font-medium text-black">3000 FCFA</span> (toutes les villes)
+                        </p>
+                    </article>
                 </aside>
 
                 {/* ---------- Côte Droite ---------- */}
@@ -58,7 +93,7 @@ const PlaceOrderPage = () => {
                             <div className='flex items-center gap-3 bordder p-2 px-3 cursor-pointer' onClick={() => setMethod('wave')}>
                                 <p className={`min-w-3.5 h-3.5 border rounded-full ${method === 'wave' ? 'bg-green-400' : ''}`}></p>
                                 <img src={assets.wave_logo} alt="" className='h-5 mx-5' />
-                            </div> 
+                            </div>
                             <div className='flex items-center gap-3 bordder p-2 px-3 cursor-pointer' onClick={() => setMethod('om')}>
                                 <p className={`min-w-3.5 h-3.5 border rounded-full ${method === 'om' ? 'bg-green-400' : ''}`}></p>
                                 <img src={assets.om_logo} alt="" className='h-5 mx-5' />

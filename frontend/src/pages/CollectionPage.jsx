@@ -87,16 +87,14 @@ const CollectionPage = () => {
                             <div className='flex flex-col gap-2 text-sm font-light text-gray-700'>
                                 <p className='flex gap-2'><input type="checkbox" className='w-3' value={'Men'} onChange={toggleCategory} />Homme</p>
                                 <p className='flex gap-2'><input type="checkbox" className='w-3' value={'Women'} onChange={toggleCategory} />Femme</p>
-                                <p className='flex gap-2'><input type="checkbox" className='w-3' value={'Kids'} onChange={toggleCategory} />Enfant</p>
                             </div>
                         </article>
                         {/* Sous-categories de filtrage */}
                         <article className={`border border-gray-300 pl-5 py-3 mt-5 ${showFilter ? '' : 'hidden'} sm:block`}>
                             <p className='mb-3 text-sm font-medium'>TYPE</p>
                             <div className='flex flex-col gap-2 text-sm font-light text-gray-700'>
-                                <p className='flex gap-2'><input type="checkbox" className='w-3' value={'Topwear'} onChange={toggleType} />Topwear</p>{/* Chemise / Vêtements de dessus */}
-                                <p className='flex gap-2'><input type="checkbox" className='w-3' value={'Bottomwear'} onChange={toggleType} />Bottomwear</p>{/* Pantalon / Vêtements de bas */}
-                                <p className='flex gap-2'><input type="checkbox" className='w-3' value={'Winterwear'} onChange={toggleType} />Winterwear</p>{/* Vêtements d'hiver */}
+                                <p className='flex gap-2'><input type="checkbox" className='w-3' value={'Topwear'} onChange={toggleType} />Chemise</p>{/* Topwear / Vêtements de dessus */}
+                                <p className='flex gap-2'><input type="checkbox" className='w-3' value={'Bottomwear'} onChange={toggleType} />Pantalon</p>{/* Bottomwear / Vêtements de bas */}
                             </div>
                         </article>
                     </aside>

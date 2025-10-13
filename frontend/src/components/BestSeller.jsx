@@ -18,9 +18,7 @@ const BestSeller = () => {
             <section className='my-10'>
                 <article className='text-center text-3xl py-8'>
                     <Title text1={'MEILLEURS'} text2={'VENTES'} />
-                    <p className="w-3/4 m-auto text-xs sm:text-sm md:text-base text-gray-600">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta doloribus voluptate explicabo vel eius facilis iste laudantium rem.
-                    </p>
+                    <p className="w-3/4 m-auto text-xs sm:text-sm md:text-base text-gray-600">Vous travaillez en bureau et vous aimez être toujours bien habillés sans vous ruiner ? Admirez nos pièces uniques et confortables.</p>
                 </article>
 
                 {/* Rendu des produits */}
