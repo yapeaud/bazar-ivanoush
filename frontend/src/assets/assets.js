@@ -52,7 +52,7 @@ import p_img50 from './img/p_img50.jpeg'
 
 
 import logo from './logo/bi_logo.png'
-import hero_img from './hero_img.png'
+import hero_img from './hero_img.jpg'
 import cart_icon from './icon/cart_icon.png'
 import bin_icon from './icon/bin_icon.png'
 import dropdown_icon from './icon/dropdown_icon.png'
