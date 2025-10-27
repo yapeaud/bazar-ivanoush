@@ -51,12 +51,37 @@ const addProduct = async (req, res) => {
 }
 
 //Fonction pour la liste des produits
-const listProduct = async (req, res) => { }
+const listProduct = async (req, res) => {
+    try {
+        const products = await productModel.find({})
+        res.status(200).json({ success: true, data: products })
+    } catch (error) {
+        console.log(error);
+        res.status(400).json({ success: false, message: error.message })
+    }
+}
 
 //Fonction permettant de retirer un produit
-const removeProduct = async (req, res) => { }
+const removeProduct = async (req, res) => {
+    try {
+        await productModel.findByIdAndDelete(req.body.id);
+        res.status(200).json({ success: true, message: 'Produit supprimé' })
+    } catch (error) {
+        console.log(error);
+        res.status(400).json({ success: false, message: error.message })
+    }
+}
 
 //Fonction pour les informations sur un seul produit
-const singleProduct = async (req, res) => { }
+const singleProduct = async (req, res) => {
+    try {
+        const { productId } = req.body
+        const product = await productModel.findById(productId);
+        res.status(200).json({ success: true, data: product })
+    } catch (error) {
+        console.log(error);
+        res.status(400).json({ success: false, message: error.message })
+    }
+}
 
 export { addProduct, listProduct, removeProduct, singleProduct }
