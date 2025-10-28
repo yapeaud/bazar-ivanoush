@@ -130,7 +130,20 @@ const userRegister = async (req, res) => {
 
 // Route pour la connexion de l'admin 
 const adminLogin = async (req, res) => {
-
+try {
+    // On recupere le token de l'utilisateur
+    const { email, password } = req.body;
+    // On verifie si le token existe
+    if (email === process.env.ADMIN_EMAIL && password === process.env.ADMIN_PASSWORD) {
+        const token = jwt.sign(email+password, process.env.JWT_SECRET);
+        res.status(200).json({ success: true, message: "Connexion reussie", token });
+    }else{
+        res.status(400).json({ success: false, message: "Identifiant non valide" });
+    }
+} catch (error) {
+    console.log(error);
+    res.status(500).json({ success: false, message: "error.message" });
+}
 }
 
 export { userLogin, userRegister, adminLogin }
