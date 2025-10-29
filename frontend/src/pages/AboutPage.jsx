@@ -15,7 +15,7 @@ const AboutPage = () => {
                     <img src={assets.about_img} alt="" className='w-full md:max-w-[450px]' />
                     <div className='flex flex-col gap-6 justify-center md:w-2/4 text-gray-600'>
                         <p>Nous sommes plus qu'une simple friperie, nous sommes la caverne d'autres articles diverse.</p>
-                         <p>Au cœur du Bazar d'Ivanoush, se trouve la qualité. Nous sélectionnons avec le plus grand soin nos articles, en ne proposant que du "friperie 1er choix". Cela signifie des vêtements (notamment nos chemises) et accessoires en excellent état, sans défauts majeurs, prêts à commencer une nouvelle vie dans votre dressing.</p>
+                        <p>Au cœur du Bazar d'Ivanoush, se trouve la qualité. Nous sélectionnons avec le plus grand soin nos articles, en ne proposant que du "friperie 1er choix". Cela signifie des vêtements (notamment nos chemises) et accessoires en excellent état, sans défauts majeurs, prêts à commencer une nouvelle vie dans votre dressing.</p>
                         <b className='text-gray-800'>Notre Mission</b>
                         <p>Vous offrir des trésors à prix doux, tout en promouvant une consommation plus responsable.</p>
                     </div>
