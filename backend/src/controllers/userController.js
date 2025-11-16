@@ -136,7 +136,6 @@ try {
     // On verifie si le token existe
     if (email === process.env.ADMIN_EMAIL && password === process.env.ADMIN_PASSWORD) {
         // On genere le token
-        //const token = jwt.sign({ data: email + password }, process.env.JWT_SECRET);
         const token = jwt.sign({ data: email + password }, process.env.JWT_SECRET);
         res.status(200).json({ success: true, message: "Connexion reussie", token });
     }else{

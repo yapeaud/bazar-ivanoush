@@ -36,7 +36,7 @@ const adminAuth = async (req, res, next) => {
         // Vérification de l'admin - adaptez selon votre logique
         const expectedPayload = process.env.ADMIN_EMAIL + process.env.ADMIN_PASSWORD;
         console.log('expectedPayload:', expectedPayload);  // ✅ Et celle-ci
-    console.log('token_decode.data:', token_decode.data);  // ✅ Et celle-ci
+        console.log('token_decode.data:', token_decode.data);  // ✅ Et celle-ci
         if (token_decode.data !== expectedPayload) {
             return res.status(403).json({ 
                 success: false, 
