@@ -1,28 +1,33 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { backendUrl } from '../App'
 import axios from 'axios'
 import { toast } from 'react-toastify'
 
 const Login = ({setToken}) => {
 
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')    
+    const [email, setEmail] = React.useState('')
+    const [password, setPassword] = React. useState('')    
 
     const onSubmitHandler = async (e) => {
         try {
-            e.preventDefault();
-            const reponse = await axios.post(backendUrl + '/api/users/admin', {email,password})
-            if (reponse.data.success) {
-                setToken(reponse.data.success)
-            }else{
-                toast.error(reponse.data.message)
+        e.preventDefault();
+        const reponse = await axios.post(backendUrl + '/api/users/admin', { email, password });
+
+        if (reponse.data.success) {
+            const { token } = reponse.data;  // ✅ Extraction du token
+            if (token) {
+                setToken(token);  // ✅ On sauvegarde le JWT
+            } else {
+                toast.error("Aucun token reçu du serveur.");
             }
-            
-        } catch (error) {
-            console.log(error);
-            toast.error(error.message)
+        } else {
+            toast.error(reponse.data.message);
         }
+    } catch (error) {
+        console.log(error);
+        toast.error(error.message);
     }
+};
 
     return (
         <>

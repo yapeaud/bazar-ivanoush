@@ -135,7 +135,9 @@ try {
     const { email, password } = req.body;
     // On verifie si le token existe
     if (email === process.env.ADMIN_EMAIL && password === process.env.ADMIN_PASSWORD) {
-        const token = jwt.sign(email+password, process.env.JWT_SECRET);
+        // On genere le token
+        //const token = jwt.sign({ data: email + password }, process.env.JWT_SECRET);
+        const token = jwt.sign({ data: email + password }, process.env.JWT_SECRET);
         res.status(200).json({ success: true, message: "Connexion reussie", token });
     }else{
         res.status(400).json({ success: false, message: "Identifiant non valide" });
@@ -146,4 +148,4 @@ try {
 }
 }
 
-export { userLogin, userRegister, adminLogin }
+export { userLogin, userRegister, adminLogin }      
