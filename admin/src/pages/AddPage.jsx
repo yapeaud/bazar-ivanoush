@@ -1,10 +1,10 @@
 import React from 'react'
-import {assets} from '../assets/assets'
+import { assets } from '../assets/assets'
 import axios from 'axios'
 import { backendUrl } from '../App'
 import { toast } from 'react-toastify'
 
-const AddPage = ({token}) => {
+const AddPage = ({ token }) => {
 
     const [image1, setImage1] = React.useState(null)
     const [image2, setImage2] = React.useState(null)
@@ -20,15 +20,15 @@ const AddPage = ({token}) => {
     const [sizes, setSizes] = React.useState([]);
 
     const onSubmitHandler = async (e) => {
-        e.preventDefault(); 
+        e.preventDefault();
         if (!token || typeof token !== 'string') {
-    console.error("Le token est invalide ou manquant !", token);
-    toast.error("Vous n'êtes pas connecté.");
-    return;
-}
+            console.error("Le token est invalide ou manquant !", token);
+            toast.error("Vous n'êtes pas connecté.");
+            return;
+        }
 
-    // console.log("Token envoyé:", token); // Debug
-    // console.log("Type du token:", typeof token); // Debug
+        // console.log("Token envoyé:", token); // Debug
+        // console.log("Type du token:", typeof token); // Debug
 
         try {
             const formData = new FormData()
@@ -46,13 +46,13 @@ const AddPage = ({token}) => {
             formData.append("bestseller", bestseller)
             formData.append("sizes", JSON.stringify(sizes))
 
-            console.log("Envoi des données...", {
-                name, description, price, category, subCategory, bestseller, sizes
-            });
+            // console.log("Envoi des données...", {
+            //     name, description, price, category, subCategory, bestseller, sizes
+            // });
 
             const response = await axios.post(
-                backendUrl + "/api/products/add", 
-                formData, 
+                backendUrl + "/api/products/add",
+                formData,
                 {
                     headers: {
                         Authorization: `Bearer ${token}`
@@ -60,7 +60,7 @@ const AddPage = ({token}) => {
                 }
             )
 
-            if(response.data.success) {
+            if (response.data.success) {
                 toast.success(response.data.message)
                 // Réinitialisation complète
                 setName('')
@@ -77,7 +77,7 @@ const AddPage = ({token}) => {
             } else {
                 toast.error(response.data.message);
             }
-            
+
         } catch (error) {
             console.log("Erreur complète:", error);
             toast.error(error.response?.data?.message || error.message)
@@ -102,7 +102,7 @@ const AddPage = ({token}) => {
                         <input onChange={(e) => setImage3(e.target.files[0])} type="file" id="image3" hidden />
                     </label>
                     <label htmlFor="image4">
-                        <img className='w-20' src= {!image4 ? assets.upload_area : URL.createObjectURL(image4)} alt="" />
+                        <img className='w-20' src={!image4 ? assets.upload_area : URL.createObjectURL(image4)} alt="" />
                         <input onChange={(e) => setImage4(e.target.files[0])} type="file" id="image4" hidden />
                     </label>
                 </article>
@@ -143,21 +143,21 @@ const AddPage = ({token}) => {
 
             <section>
                 <p className='mb-2'>Tailles du produit</p>
-                <article className='flex gap-3'> 
+                <article className='flex gap-3'>
                     <div onClick={() => setSizes(prev => prev.includes("S") ? prev.filter(item => item !== "S") : [...prev, "S"])}>
-                        <p className={`${sizes.includes("S") ?"bg-pink-100" : "bg-slate-200"} px-3 py-1 cursor-pointer`}>S</p>
+                        <p className={`${sizes.includes("S") ? "bg-pink-100" : "bg-slate-200"} px-3 py-1 cursor-pointer`}>S</p>
                     </div>
                     <div onClick={() => setSizes(prev => prev.includes("M") ? prev.filter(item => item !== "M") : [...prev, "M"])}>
-                        <p className={`${sizes.includes("M") ?"bg-pink-100" : "bg-slate-200"} px-3 py-1 cursor-pointer`}>M</p>
+                        <p className={`${sizes.includes("M") ? "bg-pink-100" : "bg-slate-200"} px-3 py-1 cursor-pointer`}>M</p>
                     </div>
                     <div onClick={() => setSizes(prev => prev.includes("L") ? prev.filter(item => item !== "L") : [...prev, "L"])}>
-                        <p className={`${sizes.includes("L") ?"bg-pink-100" : "bg-slate-200"} px-3 py-1 cursor-pointer`}>L</p>
+                        <p className={`${sizes.includes("L") ? "bg-pink-100" : "bg-slate-200"} px-3 py-1 cursor-pointer`}>L</p>
                     </div>
                     <div onClick={() => setSizes(prev => prev.includes("XL") ? prev.filter(item => item !== "XL") : [...prev, "XL"])}>
-                        <p className={`${sizes.includes("XL") ?"bg-pink-100" : "bg-slate-200"} px-3 py-1 cursor-pointer`}>XL</p>
+                        <p className={`${sizes.includes("XL") ? "bg-pink-100" : "bg-slate-200"} px-3 py-1 cursor-pointer`}>XL</p>
                     </div>
                     <div onClick={() => setSizes(prev => prev.includes("XXL") ? prev.filter(item => item !== "XXL") : [...prev, "XXL"])}>
-                        <p className={`${sizes.includes("XXL") ?"bg-pink-100" : "bg-slate-200"} px-3 py-1 cursor-pointer`}>XXL</p>
+                        <p className={`${sizes.includes("XXL") ? "bg-pink-100" : "bg-slate-200"} px-3 py-1 cursor-pointer`}>XXL</p>
                     </div>
                 </article>
             </section>

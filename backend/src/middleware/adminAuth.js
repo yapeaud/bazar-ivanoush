@@ -2,7 +2,7 @@ import jwt from 'jsonwebtoken'
 
 const adminAuth = async (req, res, next) => {
     try {
-        console.log('Headers reçus:', req.headers);
+//console.log('Headers reçus:', req.headers);
 
         // Plusieurs façons possibles d'envoyer le token
         // const token = req.headers.token ||
@@ -10,7 +10,7 @@ const adminAuth = async (req, res, next) => {
         //     req.body.token;
         const token = req.headers.authorization?.replace('Bearer ', '');
 
-        console.log('Token extrait:', token);
+        //console.log('Token extrait:', token);
 
         if (!token) {
             return res.status(401).json({
@@ -18,9 +18,9 @@ const adminAuth = async (req, res, next) => {
                 message: "Token manquant. Veuillez vous reconnecter."
             });
         }
-
-        console.log("Token avant envoi:", token);
-        console.log("Type du token:", typeof token);
+        
+        // console.log("Token avant envoi:", token);
+        // console.log("Type du token:", typeof token);
 
         // Vérifier que le token a la structure basique d'un JWT
         if (typeof token !== 'string' || !token.includes('.')) {
@@ -31,12 +31,12 @@ const adminAuth = async (req, res, next) => {
         }
 
         const token_decode = jwt.verify(token, process.env.JWT_SECRET);
-        console.log('Token décodé:', token_decode);
+        //console.log('Token décodé:', token_decode);
 
         // Vérification de l'admin - adaptez selon votre logique
         const expectedPayload = process.env.ADMIN_EMAIL + process.env.ADMIN_PASSWORD;
-        console.log('expectedPayload:', expectedPayload);  // ✅ Et celle-ci
-        console.log('token_decode.data:', token_decode.data);  // ✅ Et celle-ci
+        // console.log('expectedPayload:', expectedPayload);  // ✅ Et celle-ci
+        // console.log('token_decode.data:', token_decode.data);  // ✅ Et celle-ci
         if (token_decode.data !== expectedPayload) {
             return res.status(403).json({ 
                 success: false, 
