@@ -36,6 +36,25 @@ const ShopContextProvider = (props) => {
             cartData[itemId][size] = 1;
         }
         setCartItems(cartData);
+
+        if (token) {
+            try {
+                console.log({ itemId, size }); // Vérifier les données envoyées
+                await axios.post(
+                    backendUrl + '/api/cart/add',
+                    { itemId, size },
+                    {
+                        headers: {
+                            Authorization: `Bearer ${token}`
+                        }
+                    }
+                )
+            } catch (error) {
+                console.error("Erreur détaillée:", error.response?.data || error.message);
+                toast.error(error.response?.data?.message || error.message)
+
+            }
+        }
     }
 
     //Obtenir le nombre de produits dans le panier
@@ -60,6 +79,23 @@ const ShopContextProvider = (props) => {
         let cartData = structuredClone(cartItems);
         cartData[itemId][size] = quantity;
         setCartItems(cartData);
+
+        if (token) {
+            try {
+                await axios.post(
+                    backendUrl + '/api/cart/update',
+                    { itemId, size, quantity },
+                    {
+                        headers: {
+                            Authorization: `Bearer ${token}`
+                        }
+                    }
+                )
+            } catch (error) {
+                console.error("Erreur détaillée:", error.response?.data || error.message);
+                toast.error(error.response?.data?.message || error.message)
+            }
+        }
     }
 
     // Calculer le montant du panier
@@ -96,6 +132,27 @@ const ShopContextProvider = (props) => {
         }
     }
 
+    const getUserCart = async (token) => {
+        try {
+            const response = await axios.post(
+                backendUrl + '/api/cart/get',
+                {},
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                });
+            if (response.data.success) {
+                setCartItems(response.data.cartData);
+            } else {
+                toast.error(response.data.message);
+            }
+        } catch (error) {
+            console.error("Erreur détaillée:", error.response?.data || error.message);
+            toast.error(error.response?.data?.message || error.message)
+        }
+    }
+
     React.useEffect(() => {
         getProductsData();
     }, []);
@@ -103,6 +160,7 @@ const ShopContextProvider = (props) => {
     React.useEffect(() => {
         if (!token && localStorage.getItem('token')) {
             setToken(localStorage.getItem('token'));
+            getUserCart(localStorage.getItem('token'));
         }
     }, []);
 

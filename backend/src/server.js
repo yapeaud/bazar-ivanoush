@@ -5,6 +5,7 @@ import { connectDB }  from './config/db.js'
 import { connectCloudinary } from './config/cloudinary.js'
 import userRouter from './routes/userRoute.route.js'
 import productRouter from './routes/productRoute.route.js'
+import cartRouter from './routes/cartRoute.route.js'
 
 //App config "Configuration de l'application"
 const app = express()
@@ -17,8 +18,9 @@ app.use(cors())
 app.use(express.json())
 
 //API Endpoints "Points de terminaison API"
-app.use('/api/users', userRouter)
-app.use('/api/products', productRouter)
+app.use('/api/users', userRouter);
+app.use('/api/products', productRouter);
+app.use('/api/cart', cartRouter);
 
 app.get('/', (req, res) => {
     res.send('API est en cours d\'execution')

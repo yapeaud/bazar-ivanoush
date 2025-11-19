@@ -12,22 +12,23 @@ const CartPage = () => {
 
     const [cartData, setCartData] = useState([]);
 
-    useEffect(() =>{
-
-        const tempData = [];
-        for(const items in cartItems){
-            for(const item in cartItems[items]){
-                if (cartItems[items][item] > 0) {
-                    tempData.push({
-                        _id: items,
-                        size: item,
-                        quantity: cartItems[items][item]
-                    })
+    useEffect(() => {
+        if (products.length > 0) {
+            const tempData = [];
+            for (const items in cartItems) {
+                for (const item in cartItems[items]) {
+                    if (cartItems[items][item] > 0) {
+                        tempData.push({
+                            _id: items,
+                            size: item,
+                            quantity: cartItems[items][item]
+                        })
+                    }
                 }
             }
+            setCartData(tempData);
         }
-        setCartData(tempData);
-    }, [cartItems])
+    }, [cartItems, products])
 
     return (
         <>
@@ -35,7 +36,7 @@ const CartPage = () => {
 
                 <article className='text-2xl mb-3'>
                     <Title text1={'MON'} text2={'PANIER'} />
-                </article>  
+                </article>
 
                 <article>
                     {
@@ -55,7 +56,7 @@ const CartPage = () => {
                                         </div>
                                     </div>
                                     <input type="number" min={1} defaultValue={item.quantity} className='border max-w-10 sm:max-w-20 pw-1 sm:px-2 py-1' onChange={(e) => e.target.value === '' || e.target.value === '0' ? null : updateQuantity(item._id, item.size, Number(e.target.value))} />
-                                    <img src={assets.bin_icon} alt="" className='w-4 mr-4 cursor-pointer' onClick={()=>updateQuantity(item._id, item.size, 0)} />
+                                    <img src={assets.bin_icon} alt="" className='w-4 mr-4 cursor-pointer' onClick={() => updateQuantity(item._id, item.size, 0)} />
                                 </div>
                             )
                         })
@@ -66,7 +67,7 @@ const CartPage = () => {
                     <div className='w-full sm:w-[450px]'>
                         <CartTotal />
                         <div className='w-full text-end'>
-                            <button className='bg-black text-white text-sm my-8 px-8 py-3' onClick={() => navigate('/passer-commande') }>PASSER À LA CAISSE</button>
+                            <button className='bg-black text-white text-sm my-8 px-8 py-3' onClick={() => navigate('/passer-commande')}>PASSER À LA CAISSE</button>
                         </div>
                     </div>
                 </article>
