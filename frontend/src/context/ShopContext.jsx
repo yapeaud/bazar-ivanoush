@@ -8,7 +8,6 @@ export const ShopContext = React.createContext();
 const ShopContextProvider = (props) => {
 
     const currency = "FCFA";
-    const delivery_fee = 1500;
     const backendUrl = import.meta.env.VITE_BACKEND_URL;
     const [search, setSearch] = React.useState('');
     const [showSearch, setShowSearch] = React.useState(false);
@@ -17,10 +16,15 @@ const ShopContextProvider = (props) => {
     const [token, setToken] = React.useState('')
     const navigate = useNavigate();
 
+    // Fonction pour calculer les frais de livraison en fonction de la ville
+    const calculateDeliveryFee = (city = '') => {
+        return city === '' || city.toLowerCase() === 'abidjan' ? 1500 : 3000;
+    };
+
     // Ajouter au panier
     const addToCart = async (itemId, size) => {
         if (!size) {
-            toast.error('Selectionnez la taille du produit.');
+            toast.error('Sélectionnez la taille du produit.');
             return;
         }
 
@@ -39,7 +43,7 @@ const ShopContextProvider = (props) => {
 
         if (token) {
             try {
-                console.log({ itemId, size }); // Vérifier les données envoyées
+                //console.log("Token utilisé :", token);
                 await axios.post(
                     backendUrl + '/api/cart/add',
                     { itemId, size },
@@ -48,33 +52,28 @@ const ShopContextProvider = (props) => {
                             Authorization: `Bearer ${token}`
                         }
                     }
-                )
+                );
             } catch (error) {
                 console.error("Erreur détaillée:", error.response?.data || error.message);
-                toast.error(error.response?.data?.message || error.message)
-
+                toast.error(error.response?.data?.message || error.message);
             }
         }
-    }
+    };
 
     //Obtenir le nombre de produits dans le panier
     const getCartCount = () => {
         let totalCount = 0;
         for (const items in cartItems) {
             for (const item in cartItems[items]) {
-                try {
-                    if (cartItems[items][item] > 0) {
-                        totalCount += cartItems[items][item];
-                    }
-                } catch (error) {
-
+                if (cartItems[items][item] > 0) {
+                    totalCount += cartItems[items][item];
                 }
             }
         }
         return totalCount;
-    }
+    };
 
-    // Mettre a jour la quantite
+    // Mettre a jour la quantité
     const updateQuantity = async (itemId, size, quantity) => {
         let cartData = structuredClone(cartItems);
         cartData[itemId][size] = quantity;
@@ -90,36 +89,33 @@ const ShopContextProvider = (props) => {
                             Authorization: `Bearer ${token}`
                         }
                     }
-                )
+                );
             } catch (error) {
                 console.error("Erreur détaillée:", error.response?.data || error.message);
-                toast.error(error.response?.data?.message || error.message)
+                toast.error(error.response?.data?.message || error.message);
             }
         }
-    }
+    };
 
     // Calculer le montant du panier
     const getCartAmount = () => {
         let totalAmount = 0;
         for (const items in cartItems) {
-            let itemIfo = products.find((product) => product._id === items);
-            for (const item in cartItems[items]) {
-                try {
+            let itemInfo = products.find((product) => product._id === items);
+            if (itemInfo) {
+                for (const item in cartItems[items]) {
                     if (cartItems[items][item] > 0) {
-                        totalAmount += itemIfo.price * cartItems[items][item];
+                        totalAmount += itemInfo.price * cartItems[items][item];
                     }
-                } catch (error) {
-
                 }
             }
         }
         return totalAmount;
-    }
+    };
 
     // Récupérer les données des produits depuis la base de données 
     const getProductsData = async () => {
         try {
-
             const response = await axios.get(backendUrl + '/api/products/list');
             if (response.data.success) {
                 setProducts(response.data.products);
@@ -130,10 +126,16 @@ const ShopContextProvider = (props) => {
             console.log(error);
             toast.error(error.message);
         }
-    }
+    };
 
+    // Récupérer le panier de l'utilisateur
     const getUserCart = async (token) => {
         try {
+            //console.log("Token envoyé dans getUserCart :", token); // <= Ajouté pour déboguer
+            if (!token) {
+                console.log("Aucun token fourni à getUserCart");
+                return;
+            }
             const response = await axios.post(
                 backendUrl + '/api/cart/get',
                 {},
@@ -141,7 +143,8 @@ const ShopContextProvider = (props) => {
                     headers: {
                         Authorization: `Bearer ${token}`
                     }
-                });
+                }
+            );
             if (response.data.success) {
                 setCartItems(response.data.cartData);
             } else {
@@ -149,25 +152,26 @@ const ShopContextProvider = (props) => {
             }
         } catch (error) {
             console.error("Erreur détaillée:", error.response?.data || error.message);
-            toast.error(error.response?.data?.message || error.message)
+            toast.error(error.response?.data?.message || error.message);
         }
-    }
+    };
 
     React.useEffect(() => {
         getProductsData();
     }, []);
 
     React.useEffect(() => {
-        if (!token && localStorage.getItem('token')) {
-            setToken(localStorage.getItem('token'));
-            getUserCart(localStorage.getItem('token'));
+        const storedToken = localStorage.getItem('token');
+        if (!token && storedToken) {
+            setToken(storedToken);
+            getUserCart(storedToken);
         }
-    }, []);
+    }, [token]);
 
     const value = {
         products,
         currency,
-        delivery_fee,
+        calculateDeliveryFee,
         search,
         setSearch,
         showSearch,
@@ -182,13 +186,13 @@ const ShopContextProvider = (props) => {
         token,
         setToken,
         setCartItems
-    }
+    };
 
     return (
         <ShopContext.Provider value={value}>
             {props.children}
         </ShopContext.Provider>
-    )
-}
+    );
+};
 
 export default ShopContextProvider;

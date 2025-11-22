@@ -1,11 +1,12 @@
 import express from 'express'
 import cors from 'cors'
 import 'dotenv/config'
-import { connectDB }  from './config/db.js'
+import { connectDB } from './config/db.js'
 import { connectCloudinary } from './config/cloudinary.js'
 import userRouter from './routes/userRoute.route.js'
 import productRouter from './routes/productRoute.route.js'
 import cartRouter from './routes/cartRoute.route.js'
+import orderRouter from './routes/orderRoute.route.js'
 
 //App config "Configuration de l'application"
 const app = express()
@@ -21,6 +22,7 @@ app.use(express.json())
 app.use('/api/users', userRouter);
 app.use('/api/products', productRouter);
 app.use('/api/cart', cartRouter);
+app.use('/api/orders', orderRouter);
 
 app.get('/', (req, res) => {
     res.send('API est en cours d\'execution')
